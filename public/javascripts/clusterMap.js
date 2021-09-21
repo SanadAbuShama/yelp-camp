@@ -2,7 +2,7 @@ mapboxgl.accessToken = mapToken;
 const map = new mapboxgl.Map({
     container: 'cluster-map',
     style: 'mapbox://styles/mapbox/light-v10',
-    center: [-103.5917, 40.6699],
+    center: [35.204269, 31.898043],
     zoom: 3
 });
 
@@ -109,7 +109,7 @@ map.on('load', () => {
     // description HTML from its properties.
     map.on('click', 'unclustered-point', (e) => {
         const coordinates = e.features[0].geometry.coordinates.slice();
-       const {popUpMarkup} =e.features[0].properties;
+        const { popUpMarkup } = e.features[0].properties;
 
         // Ensure that if the map is zoomed out such that
         // multiple copies of the feature are visible, the
