@@ -1,13 +1,18 @@
 
+
+require('dotenv').config();
+
+
+
+
 const mongoose = require('mongoose');
 const Campground = require('../models/campground');
 const cities = require('./cities')
 const { descriptors, places } = require('./seedHelpers')
 
-require('dotenv').config();
 
-const dbUrl = process.env.DB_URL
-mongoose.connect(dbUrl, {
+
+mongoose.connect('mongodb+srv://Sanad:RABLjwBXfDLtYOVw@cluster0.vrgjg.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
@@ -15,6 +20,8 @@ mongoose.connect(dbUrl, {
 
 
 const db = mongoose.connection;
+
+
 db.on('error', console.error.bind(console, 'connection error'))
 db.once('open', () => {
     console.log('DATABASE CONNECTED')
