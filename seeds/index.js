@@ -1,18 +1,11 @@
 
-
-require('dotenv').config();
-
-
-
-
 const mongoose = require('mongoose');
 const Campground = require('../models/campground');
 const cities = require('./cities')
 const { descriptors, places } = require('./seedHelpers')
 
 
-
-mongoose.connect('mongodb+srv://Sanad:RABLjwBXfDLtYOVw@cluster0.vrgjg.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', {
+mongoose.connect('mongodb://localhost:27017/yelp-camp', {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
@@ -20,8 +13,6 @@ mongoose.connect('mongodb+srv://Sanad:RABLjwBXfDLtYOVw@cluster0.vrgjg.mongodb.ne
 
 
 const db = mongoose.connection;
-
-
 db.on('error', console.error.bind(console, 'connection error'))
 db.once('open', () => {
     console.log('DATABASE CONNECTED')
