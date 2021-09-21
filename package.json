@@ -1,5 +1,5 @@
 {
-  "name": "yelpcamp",
+  "name": "YelpCamp",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -25,6 +25,7 @@
     "helmet": "^4.6.0",
     "joi": "^17.4.2",
     "method-override": "^3.0.0",
+    "mongo-connect": "^0.0.6",
     "mongoose": "^6.0.4",
     "multer": "^1.4.3",
     "multer-storage-cloudinary": "^4.0.0",
