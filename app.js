@@ -27,7 +27,7 @@ const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/yelp-camp';
 
 
 //'mongodb://localhost:27017/yelp-camp'
-mongoose.connect(dbUrl, {
+mongoose.connect('mongodb://localhost:27017/yelp-camp', {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
@@ -136,6 +136,7 @@ passport.deserializeUser(User.deserializeUser())
 
 app.use((req, res, next) => {
     res.locals.currentUser = req.user;
+    res.locals.moment = require('moment')
     res.locals.success = req.flash('success')
     res.locals.error = req.flash('error')
     next();

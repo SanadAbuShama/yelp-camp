@@ -39,12 +39,16 @@
                     </p>
                 </div>
                 <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <%= moment(campground.createdAt).fromNow() %>
+                    </li>
                     <li class="list-group-item text-muted">
                         <%= campground.location %>
                     </li>
                     <li class="list-group-item">
                         Submitted by <%= campground.author.username %>
                     </li>
+
                     <li class="list-group-item">
                         $<%= campground.price %>/night
                     </li>
@@ -60,9 +64,9 @@
                     <% } %>
             </div>
         </div>
-    
-            
-        
+
+
+
         <div class="col-6">
             <div id='map' class="mb-3"></div>
             <% if(currentUser){ %>
@@ -103,6 +107,9 @@
                                 <h5 class="card-title">
                                     <%= review.author.username %>
                                 </h5>
+                                <span>
+                                    <%= moment(review.createdAt).fromNow() %>
+                                </span>
                                 <p class="starability-result" data-rating="<%= review.rating %>">
                                     Rated: <%= review.rating %> stars
                                 </p>
@@ -115,6 +122,7 @@
                                         <button class="btn btn-sm btn-danger">Delete</button>
                                     </form>
                                     <% } %>
+
                             </div>
                         </div>
 
