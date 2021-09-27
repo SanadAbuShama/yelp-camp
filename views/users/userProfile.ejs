@@ -1,24 +1,39 @@
 <% layout('layouts/boilerplate') %>
-    <div class="mb-3">
-        <div id="cluster-map"></div>
-    </div>
+<link rel="stylesheet" href="/stylesheets/showPage.css">
+<link rel="stylesheet" href="/stylesheets/cards.css">
+<link rel="stylesheet" href="/stylesheets/campgroundForms.css">
+
     <div class="row mb-3">
-        <% if(search){ %>
-            <% if(!campgrounds.length){ %>
-                <h3 class="col text-center results">No results found!
-                </h3>
-
+        <div class="card col-lg-4 offset-lg-4 col-md-6 offset-md-3 paige">
+            <h5 class="card-title mb-3 text-center mt-3"><span class="badge bg-primary">
+                    <%=user.username%>
+                </span></h5>
+            <% if(user.avatar.url){%>
+                <img src="<%= user.avatar.url %>" class="card-img-top" alt="...">
                 <% } else{ %>
-                    <h3 class="col text-center results">Results for: <%= search %>
-                    </h3>
+                    <img src="https://res.cloudinary.com/dju2sbfnj/image/upload/v1632434489/YelpCamp/profile_uyaawq.png"
+                        alt="">
                     <% } %>
-                        <% } else{ %>
-                            <h3 class="col text-center results">All campgrounds</h3>
-                            <% } %>
+                        <div class="card-body text-center">
 
+                        </div>
+                        <ul class="list-group list-group-flush text-center">
+                            <li class="list-group-item paige">Name: <%= user.firstName %>
+                                    <%= user.lastName %>
+                            </li>
+                            <li class="list-group-item paige">Contact: <a href="mailto:<%= user.email %>">
+                                    <%= user.email %>
+                                </a></li>
+
+                        </ul>
+
+        </div>
     </div>
+
+    <h3 class="text-center mb-3 mt-3" id="userCampgrounds">Campgrounds by <%= user.username%>:</h3>
+
     <% for(let campground of campgrounds){%>
-        <div class="card mb-3 bg-" id="card">
+        <div class="card mb-3" id="card">
             <div class="row">
                 <div class="col-md-4">
                     <% if(campground.images.length){ %>
@@ -52,9 +67,4 @@
             </div>
         </div>
         <%}%>
-
-            <script>
-                const mapToken = '<%- process.env.MAPBOX_TOKEN %>';
-                const campgrounds = { features:<%- JSON.stringify(campgrounds) %>};
-            </script>
-            <script src="/javascripts/clusterMap.js"></script>
+            </div>

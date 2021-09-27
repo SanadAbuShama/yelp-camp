@@ -1,4 +1,6 @@
 <% layout('layouts/boilerplate') %>
+<link rel="stylesheet" href="/stylesheets/campgroundForms.css">
+
     <div class="row">
         <h1 class="text-center">New Campground</h1>
         <div class="col-md-6 offset-md-3">
@@ -10,7 +12,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="location" class="form-label">Location:</label>
-                    <input type=" text" name="campground[location]" id="location" class="form-control" required>
+                    <input type=" text" name="campground[location]" id="location" class="form-control" placeholder="City, Country" required>
 
                 </div>
 
@@ -46,3 +48,4 @@
 
         </div>
     </div>
+

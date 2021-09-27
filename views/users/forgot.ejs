@@ -1,0 +1,11 @@
+<% layout('layouts/boilerplate') %>
+<link rel="stylesheet" href="/stylesheets/campgroundForms.css">
+    <form action="/forgot" method="POST">
+        <div class="mb-3">
+            <label for="email" class="form-label">Email address:</label>
+            <input type="email" name="email" class="form-control" id="email" placeholder="email@example.com" autofocus>
+        </div>
+        <div>
+            <button class="btn btn-primary">Reset password</button>
+        </div>
+    </form>

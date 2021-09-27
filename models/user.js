@@ -9,7 +9,15 @@ const UserSchema = new Schema({
         required: true,
         unique: true
 
-    }
+    },
+    firstName: String,
+    lastName: String,
+    avatar: {
+        url: String,
+        filename: String
+    },
+    restPasswordToken: String,
+    resetPasswordExpires: Date
 })
 
 UserSchema.plugin(passportlocalMongoose)

@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top" id="navbar">
     <div class="container-fluid">
         <a class="navbar-brand" href="/">YelpCamp</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
@@ -7,22 +7,42 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                <a class="nav-link" aria-current="page" href="/">Home</a>
-                <a class="nav-link" href="/campgrounds">Campgrounds</a>
-                <a class="nav-link" href="/campgrounds/new">New Campground</a>
+                <a class="nav-link"  aria-current="page" href="/">Home</a>
+                <a class="nav-link"  href="/campgrounds">Campgrounds</a>
+                <a class="nav-link"  href="/campgrounds/new">New Campground</a>
             </div>
+
             <div class="navbar-nav ms-auto">
                 <% if(!currentUser){ %>
-                    <a class="nav-link" href="/login">Login</a>
-                    <a class="nav-link" href="/register">Sign up</a>
+                    <a class="nav-link" id="login" href="/login">Login</a>
+                    <a class="nav-link" id="signup" href="/register">Sign up</a>
                     <% } else{ %>
                         <span class="navbar-text">
-                            <%= currentUser.username %>
+                            Logged in as <%= currentUser.username %>
                         </span>
                         <a class="nav-link" href="/logout">Logout</a>
                         <% } %>
-
+            </div>
+            <div class="navbar-nav">
+                <form action="/campgrounds" method="GET" class="input-group">
+                    <input type="text" name="search" class="form-control rounded mx-2" placeholder="Search campgrounds"
+                        aria-label="Search" aria-describedby="search-addon" />
+                    <button class="btn btn-primary">Search</button>
+                </form>
             </div>
         </div>
     </div>
 </nav>
+
+<script>
+    window.onscroll = function () { scrollFunction() }
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
+            document.getElementById("navbar").style.backgroundColor = "black";
+        }
+        else {
+            document.getElementById("navbar").style.backgroundColor = "transparent";
+        }
+    }
+</script>

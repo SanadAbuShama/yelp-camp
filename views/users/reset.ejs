@@ -1,0 +1,15 @@
+<% layout('layouts/boilerplate') %>
+<link rel="stylesheet" href="/stylesheets/campgroundForms.css">
+    <form action="/reset/<%= token %> " method="POST">
+        <div class="mb-3">
+            <label for="password" class="form-label">New password:</label>
+            <input type="password" name="password" class="form-control" id="password" autofocus>
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">Confirm password:</label>
+            <input type="password" name="confirm" class="form-control" id="password">
+        </div>
+        <div>
+            <button class="btn btn-primary">Reset password</button>
+        </div>
+    </form>

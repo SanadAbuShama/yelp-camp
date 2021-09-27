@@ -7,8 +7,18 @@ const { cloudinary } = require('../cloudinary')
 
 
 module.exports.index = async (req, res) => {
-    const campgrounds = await Campground.find({})
-    res.render('campgrounds/index', { campgrounds })
+    if (req.query.search) {
+        const { search } = req.query;
+        const regex = new RegExp(escapeRegex(search), 'gi');
+        const campgrounds = await Campground.find({ $or: [{ title: regex }, { location: regex }] })
+        res.render('campgrounds/index', { campgrounds, search })
+    }
+    else {
+        const { search } = req.query;
+        const campgrounds = await Campground.find({})
+        res.render('campgrounds/index', { campgrounds, search })
+    }
+
 }
 
 module.exports.renderNewForm = (req, res) => {
@@ -29,7 +39,6 @@ module.exports.createCampground = async (req, res, next) => {
     newCampground.images = req.files.map(f => ({ url: f.path, filename: f.filename }));
     newCampground.author = req.user._id
     await newCampground.save();
-    console.log(newCampground);
     req.flash('success', 'Successfully made a new campground!')
     res.redirect(`/campgrounds/${newCampground._id}`);
 
@@ -37,7 +46,6 @@ module.exports.createCampground = async (req, res, next) => {
 
 module.exports.editCampground = async (req, res) => {
     const { id } = req.params;
-    console.log(req.body)
     const campground = await Campground.findByIdAndUpdate(id, req.body.campground, { runValidators: true, new: true });
     const imgs = req.files.map(f => ({ url: f.path, filename: f.filename }));
     campground.images.push(...imgs);
@@ -84,3 +92,8 @@ module.exports.deleteCampground = async (req, res) => {
     req.flash('success', 'Campground deleted!')
     res.redirect('/campgrounds')
 }
+
+
+function escapeRegex(text) {
+    return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+};

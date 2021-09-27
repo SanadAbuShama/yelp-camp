@@ -1,4 +1,5 @@
 <% layout('layouts/boilerplate') %>
+<link rel="stylesheet" href="/stylesheets/campgroundForms.css">
 
     <div class="row">
         <h1 class="text-center">Edit Campground</h1>
@@ -35,6 +36,9 @@
                     <label for="image" class="form-label">Add images:</label>
                     <input class="form-control" type="file" id="image" name="image" multiple>
                 </div>
+                <div class="mb-3">
+                    <button class="btn btn-primary">Edit campground</button>
+                </div>
                 <div class="mb-3 row">
                     <% foundCampground.images.forEach(function (img,i){%>
                         <div class="col-12">
@@ -47,9 +51,7 @@
                             <% }) %>
                         </div>
                 </div>
-                <div class="mb-3">
-                    <button class="btn btn-primary">Edit campground</button>
-                </div>
+
 
             </form>
         </div>
